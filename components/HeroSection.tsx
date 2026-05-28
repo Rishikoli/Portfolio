@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import FloatingLines from "./FloatingLines";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
@@ -79,18 +78,6 @@ export default function HeroSection() {
         </div>
 
         <div style={{ position: "relative", display: "inline-block", width: "100%" }}>
-          <div className="parallax-shape" style={{ 
-            position: "absolute", 
-            top: "50%", 
-            left: "50%", 
-            transform: "translate(-50%, -50%)", 
-            width: "clamp(450px, 70vw, 850px)", 
-            height: "clamp(450px, 70vw, 850px)", 
-            zIndex: -1, 
-            pointerEvents: "none" 
-          }}>
-            <FloatingLines />
-          </div>
           <h1 className="hero-title font-serif" style={{ fontSize: "clamp(60px, 11vw, 140px)", color: "#303841", perspective: 1000, position: "relative", zIndex: 1 }}>
             <div style={{ overflow: "hidden" }}><div className="hero-title-line">Rishikesh</div></div>
             <div style={{ overflow: "hidden" }}><div className="hero-title-line" style={{ color: "#FF5722", fontStyle: "italic" }}>Koli</div></div>
