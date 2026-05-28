@@ -9,32 +9,32 @@ const PROJECTS = [
   {
     id: "nexus",
     title: "NEXUS Ray",
-    type: "AI Agent Framework",
-    desc: "An enterprise-grade, event-driven framework for distributed intelligent agent networks. Designed for complex AI orchestration, it utilizes scalable Python microservices for AI inference and is optimized via OpenVINO INT8 quantization—drastically cutting model latency for production-ready deployment.",
+    subtitle: "AI Agent Orchestration Framework",
+    desc: "An event-driven AI orchestration framework for distributed intelligent workflows. Built scalable Python microservices for AI inference and workflow automation. Optimized AI inference latency using OpenVINO INT8 quantization, reducing model execution time for production deployments. Integrated OpenAI APIs with custom prompt engineering for intelligent automation.",
     tech: ["Python", "Apache Kafka", "OpenVINO", "OpenAI APIs", "ChromaDB"],
-    metrics: ["60% Latency Reduction", "Distributed Orchestration"],
+    metrics: ["60% Latency Reduction", "Event-Driven Inference"],
     color: "#76ABAE",
-    link: "https://github.com/Rishikoli"
+    link: "https://github.com/Rishikoli/Portfolio"
   },
   {
     id: "interview",
-    title: "InterviewMaster AI",
-    type: "Real-time Coaching Platform",
-    desc: "A high-performance AI coaching platform featuring LLM-driven dynamic question generation. Architected for concurrent, low-latency WebSocket sessions, managing the full ML product lifecycle from prompt engineering to real-time evaluation and inference optimization.",
+    title: "InterviewMaster",
+    subtitle: "AI Interview Coaching Platform",
+    desc: "An AI-powered coaching platform with real-time feedback loops and dynamic LLM-driven question generation. Implemented prompt engineering pipelines to simulate diverse interview scenarios. Built low-latency backend APIs using FastAPI supporting concurrent AI sessions, validating model outputs for accuracy.",
     tech: ["FastAPI", "React", "OpenAI GPT-4", "WebSockets", "Redis"],
-    metrics: ["<145ms Latency", "Concurrent Sessions"],
+    metrics: ["Low-Latency Sessions", "Dynamic LLM Prompting"],
     color: "#FF5722",
-    link: "https://github.com/Rishikoli"
+    link: "https://github.com/Rishikoli/Portfolio"
   },
   {
     id: "dementia",
-    title: "AI Dementia Companion",
-    type: "Responsible AI Assistant",
-    desc: "A human-centered AI assistant engineered for dementia patients. Implements conversational LLM workflows backed by rigorous responsible AI guardrails, ensuring safe, personalized, and context-aware interactions through continuous memory vectoring.",
-    tech: ["Next.js", "FastAPI", "OpenAI Speech", "MongoDB Vector"],
-    metrics: ["Context-Aware Memory", "Safety Guardrails"],
+    title: "AI Dementia Assistant",
+    subtitle: "Cognitive Support LLM App",
+    desc: "A human-centered AI assistant for dementia patients leveraging conversational LLM workflows for cognitive support and caregiver interaction. Engineered scalable REST APIs enabling real-time AI responses. Applied responsible AI design principles to ensure safe, personalized, and context-aware interactions.",
+    tech: ["FastAPI", "Next.js", "OpenAI Speech", "MongoDB Vector"],
+    metrics: ["Context-Aware Memory", "Responsible AI Guardrails"],
     color: "#303841",
-    link: "https://github.com/Rishikoli"
+    link: "https://github.com/Rishikoli/Portfolio"
   }
 ];
 
@@ -44,13 +44,11 @@ export default function WorkSection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       
-      // Header fade in
       gsap.fromTo(".work-header", 
         { y: 60, opacity: 0 }, 
         { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".work-header", start: "top 80%" } }
       );
 
-      // Card staggered animation
       gsap.utils.toArray<HTMLElement>(".project-card").forEach((card, i) => {
         gsap.fromTo(card,
           { y: 60, opacity: 0 },
@@ -89,7 +87,7 @@ export default function WorkSection() {
             
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
               <div style={{ padding: "6px 16px", borderRadius: 999, background: `${p.color}15`, color: p.color, fontSize: 12, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                {p.type}
+                {p.subtitle}
               </div>
             </div>
 

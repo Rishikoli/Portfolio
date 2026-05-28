@@ -51,10 +51,10 @@ export default function MobiusStrip() {
       angleZ = frame * 0.003;
       frame++;
 
-      const numU = 120;
-      const numV = 12;
-      const radius = Math.min(W, H) * 0.18;
-      const stripWidth = radius * 0.55;
+      const numU = 180;
+      const numV = 16;
+      const radius = Math.min(W, H) * 0.28;
+      const stripWidth = radius * 0.65;
 
       // Project 3D points
       const points: { x: number; y: number; z: number; color: string }[][] = [];

@@ -84,8 +84,8 @@ export default function HeroSection() {
             top: "50%", 
             left: "50%", 
             transform: "translate(-50%, -50%)", 
-            width: "clamp(300px, 55vw, 650px)", 
-            height: "clamp(300px, 55vw, 650px)", 
+            width: "clamp(450px, 70vw, 850px)", 
+            height: "clamp(450px, 70vw, 850px)", 
             zIndex: -1, 
             pointerEvents: "none" 
           }}>
