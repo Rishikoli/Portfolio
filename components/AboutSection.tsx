@@ -62,9 +62,10 @@ export default function AboutSection() {
           </h3>
           <div className="about-line stat-item" style={{ marginBottom: 40 }}>
             <h4 style={{ fontSize: 20, fontWeight: 600, color: "#303841", marginBottom: 4 }}>Technical Intern</h4>
-            <div style={{ fontSize: 14, color: "#76ABAE", marginBottom: 12 }}>MRSAC · Jan–May 2026</div>
+            <div style={{ fontSize: 13, color: "#76ABAE", marginBottom: 6, fontWeight: 500 }}>Maharashtra Remote Sensing Application Centre (MRSAC)</div>
+            <div style={{ fontSize: 13, color: "rgba(48,56,65,0.5)", marginBottom: 12 }}>Worked under Associate Scientist · Jan–May 2026</div>
             <p style={{ fontSize: 15, color: "rgba(48,56,65,0.6)", lineHeight: 1.6 }}>
-              Contributed to technical workflows, applied Agile methodologies, and deepened knowledge of cloud computing and scalable architecture.
+              Spearheaded cloud computing and scalable system architectures under the direct guidance of an Associate Scientist. Developed advanced technical workflows, analyzed spatial/multidimensional datasets, and applied Agile methodologies to accelerate project lifecycles.
             </p>
           </div>
         </div>
