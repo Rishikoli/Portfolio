@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import QuantizationSimulator from "./QuantizationSimulator";
 gsap.registerPlugin(ScrollTrigger);
 
 const SKILLS = [
@@ -86,6 +87,8 @@ export default function SkillsSection() {
           </div>
         ))}
       </div>
+
+      <QuantizationSimulator />
 
     </section>
   );
