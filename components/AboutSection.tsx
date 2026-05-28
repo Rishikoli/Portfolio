@@ -24,7 +24,7 @@ export default function AboutSection() {
 
       gsap.fromTo(".stat-item", 
         { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".stats-grid", start: "top 85%" } }
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".stat-item", start: "top 85%" } }
       );
 
       gsap.fromTo(".achv-card", 
