@@ -165,3 +165,34 @@ h1, h2, h3, h4 {
     linear-gradient(90deg, rgba(48,56,65,0.03) 1px, transparent 1px);
   background-size: 100px 100px;
 }
+
+/* About layout: two columns on desktop, stacked on small screens */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 40px 24px;
+}
+.about-main { grid-column: 1 / 8; }
+.about-side { grid-column: 9 / 13; }
+@media (max-width: 900px) {
+  .about-main, .about-side { grid-column: 1 / -1; }
+}
+
+/* Resume link in the pill nav */
+.pill-resume {
+  text-decoration: none;
+  color: var(--orange);
+}
+.pill-resume:hover { color: var(--orange); }
+@media (max-width: 520px) {
+  .pill-tab { padding: 9px 10px; font-size: 13px; }
+}
+
+.footer-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--orange); }

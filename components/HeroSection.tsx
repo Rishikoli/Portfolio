@@ -92,6 +92,9 @@ export default function HeroSection() {
           <button className="btn-primary" onClick={() => scrollTo("work")}>
             View Selected Work
           </button>
+          <a href="/Rishikesh_Koli_ML_Intern_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+            Download Resume
+          </a>
           <a href="mailto:1983rishikesh@gmail.com" className="btn-secondary">
             Get in touch
           </a>

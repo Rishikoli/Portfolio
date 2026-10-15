@@ -75,6 +75,9 @@ export default function Navbar() {
             {n.label}
           </button>
         ))}
+        <a href="/Rishikesh_Koli_ML_Intern_Resume.pdf" target="_blank" rel="noopener noreferrer" className="pill-tab pill-resume">
+          Resume
+        </a>
       </div>
     </nav>
   );
