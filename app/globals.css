@@ -414,53 +414,22 @@ h1, h2, h3, h4 {
 }
 .hero-copy { order: 1; }
 .hero-art { order: 2; display: flex; justify-content: center; }
-.hero-art .pastel-character { width: 100%; max-width: 460px; height: auto; overflow: hidden; }
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 8px; text-align: center; padding-top: 110px; }
   .hero-art { order: 0; }
-  .hero-art .pastel-character { max-width: 270px; }
   .hero-desc { margin-left: auto !important; margin-right: auto !important; }
   .hero-cta { justify-content: center; }
 }
 
-/* Character animation on a shared 9s cycle: breathing, swaying fringe, blinking, a glint
-   across the glasses, and at ~12–36% a head tilt with a smile and a "hey!" bubble */
-.pastel-character { cursor: pointer; }
-.pc-head, .pc-mouth-calm, .pc-mouth-smile, .pc-bubble, .pc-blush {
-  animation-duration: 9s; animation-iteration-count: infinite; animation-timing-function: ease-in-out;
+/* Pixel game hero: low-res canvas scaled up with hard pixels inside a chunky stepped frame */
+.pixel-hero {
+  width: 100%; max-width: 520px; padding: 6px; background: #1B1416;
+  box-shadow: 0 0 0 4px #F4EFE6, 0 0 0 8px #1B1416, 8px 8px 0 8px rgba(27,20,22,0.25);
+  image-rendering: pixelated;
 }
-.pc-body { transform-box: view-box; transform-origin: 210px 430px; animation: pc-breathe 4s ease-in-out infinite; }
-.pc-head { transform-box: view-box; transform-origin: 211px 215px; animation-name: pc-head; }
-.pc-fringe { transform-box: view-box; transform-origin: 214px 70px; animation: pc-fringe 3s ease-in-out infinite; }
-.pc-blink { transform-box: fill-box; transform-origin: center; animation: pc-blink 3.8s infinite; }
-.pc-glint { animation: pc-glint 5s ease-in-out infinite; }
-.pc-mouth-calm { animation-name: pc-calm-only; }
-.pc-mouth-smile { animation-name: pc-smile-only; opacity: 0; }
-.pc-blush { animation-name: pc-blush; }
-.pc-bubble { opacity: 0; transform-box: view-box; transform-origin: 100px 136px; animation-name: pc-bubble; }
-
-@keyframes pc-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-@keyframes pc-head {
-  0%, 10% { transform: rotate(0deg); }
-  15%, 32% { transform: rotate(-5deg) translateY(-2px); }
-  38%, 60% { transform: rotate(1.5deg); }
-  70%, 100% { transform: rotate(0deg); }
-}
-@keyframes pc-fringe { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg) translateY(1px); } }
-@keyframes pc-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
-@keyframes pc-glint { 0%, 55% { transform: translateX(-60px); } 75%, 100% { transform: translateX(80px); } }
-@keyframes pc-calm-only { 0%, 11% { opacity: 1; } 13%, 34% { opacity: 0; } 36%, 100% { opacity: 1; } }
-@keyframes pc-smile-only { 0%, 11% { opacity: 0; } 13%, 34% { opacity: 1; } 36%, 100% { opacity: 0; } }
-@keyframes pc-blush { 0%, 10%, 40%, 100% { opacity: 0.6; } 16%, 32% { opacity: 0.95; } }
-@keyframes pc-bubble {
-  0%, 12% { opacity: 0; transform: scale(0.6); }
-  15%, 33% { opacity: 1; transform: scale(1); }
-  36%, 100% { opacity: 0; transform: scale(0.8); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pastel-character * { animation: none !important; }
-}
+.pixel-hero canvas { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; image-rendering: pixelated; cursor: pointer; outline: none; }
+.pixel-hero canvas:focus-visible { box-shadow: 0 0 0 3px #E2683C; }
+@media (max-width: 900px) { .hero-art .pixel-hero { max-width: 360px; } }
 
 /* ══════════════════════════════
    HAND-DRAWN PASTEL STYLE
