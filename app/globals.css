@@ -424,26 +424,20 @@ h1, h2, h3, h4 {
 }
 
 /* Character animation on a shared 9s cycle: breathing, swaying fringe, blinking, a glint
-   across the glasses, and at ~12–36% the hand rises to wave with a smile and a "hey!" */
+   across the glasses, and at ~12–36% a head tilt with a smile and a "hey!" bubble */
 .pastel-character { cursor: pointer; }
-.pc-head, .pc-mouth-calm, .pc-mouth-smile, .pc-wave, .pc-bubble, .pc-blush {
+.pc-head, .pc-mouth-calm, .pc-mouth-smile, .pc-bubble, .pc-blush {
   animation-duration: 9s; animation-iteration-count: infinite; animation-timing-function: ease-in-out;
 }
-.pc-body { transform-box: view-box; transform-origin: 210px 460px; animation: pc-breathe 4s ease-in-out infinite; }
-.pc-head { transform-box: view-box; transform-origin: 211px 236px; animation-name: pc-head; }
-.pc-fringe { transform-box: view-box; transform-origin: 206px 104px; animation: pc-fringe 3s ease-in-out infinite; }
+.pc-body { transform-box: view-box; transform-origin: 210px 430px; animation: pc-breathe 4s ease-in-out infinite; }
+.pc-head { transform-box: view-box; transform-origin: 211px 215px; animation-name: pc-head; }
+.pc-fringe { transform-box: view-box; transform-origin: 214px 70px; animation: pc-fringe 3s ease-in-out infinite; }
 .pc-blink { transform-box: fill-box; transform-origin: center; animation: pc-blink 3.8s infinite; }
 .pc-glint { animation: pc-glint 5s ease-in-out infinite; }
 .pc-mouth-calm { animation-name: pc-calm-only; }
-.pc-mouth-smile { animation-name: pc-wave-only; opacity: 0; }
+.pc-mouth-smile { animation-name: pc-smile-only; opacity: 0; }
 .pc-blush { animation-name: pc-blush; }
-.pc-wave { transform-box: view-box; animation-name: pc-wave-rise; transform: translateY(190px); }
-.pc-wave-swing { transform-box: view-box; transform-origin: 350px 440px; animation: pc-swing 0.5s ease-in-out infinite alternate; }
-.pc-bubble { opacity: 0; transform-box: view-box; transform-origin: 70px 130px; animation-name: pc-bubble; }
-.pc-idea { opacity: 0; animation: pc-rise 4.5s ease-out infinite; }
-.pc-idea-b { animation-delay: 1.5s; }
-.pc-idea-c { animation-delay: 3s; }
-.pc-backdrop { transform-box: fill-box; transform-origin: center; animation: pc-wobble 14s ease-in-out infinite; }
+.pc-bubble { opacity: 0; transform-box: view-box; transform-origin: 100px 136px; animation-name: pc-bubble; }
 
 @keyframes pc-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 @keyframes pc-head {
@@ -452,34 +446,20 @@ h1, h2, h3, h4 {
   38%, 60% { transform: rotate(1.5deg); }
   70%, 100% { transform: rotate(0deg); }
 }
-@keyframes pc-fringe { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2.5deg) translateY(1px); } }
+@keyframes pc-fringe { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg) translateY(1px); } }
 @keyframes pc-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
 @keyframes pc-glint { 0%, 55% { transform: translateX(-60px); } 75%, 100% { transform: translateX(80px); } }
 @keyframes pc-calm-only { 0%, 11% { opacity: 1; } 13%, 34% { opacity: 0; } 36%, 100% { opacity: 1; } }
-@keyframes pc-wave-only { 0%, 11% { opacity: 0; } 13%, 34% { opacity: 1; } 36%, 100% { opacity: 0; } }
+@keyframes pc-smile-only { 0%, 11% { opacity: 0; } 13%, 34% { opacity: 1; } 36%, 100% { opacity: 0; } }
 @keyframes pc-blush { 0%, 10%, 40%, 100% { opacity: 0.6; } 16%, 32% { opacity: 0.95; } }
-@keyframes pc-wave-rise {
-  0%, 9% { transform: translateY(190px); }
-  15%, 31% { transform: translateY(0); }
-  38%, 100% { transform: translateY(190px); }
-}
-@keyframes pc-swing { from { transform: rotate(-8deg); } to { transform: rotate(8deg); } }
 @keyframes pc-bubble {
   0%, 12% { opacity: 0; transform: scale(0.6); }
   15%, 33% { opacity: 1; transform: scale(1); }
   36%, 100% { opacity: 0; transform: scale(0.8); }
 }
-@keyframes pc-rise {
-  0% { opacity: 0; transform: translateY(20px) scale(0.7); }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-50px) scale(1.05); }
-}
-@keyframes pc-wobble { 0%, 100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(4deg) scale(1.02); } }
 
 @media (prefers-reduced-motion: reduce) {
   .pastel-character * { animation: none !important; }
-  .pc-idea { opacity: 1; }
 }
 
 /* ══════════════════════════════
