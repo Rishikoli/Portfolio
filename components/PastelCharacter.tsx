@@ -10,8 +10,8 @@ import { useEffect, useRef, useState } from "react";
 const INK = "#231B17";
 const SKIN = "#F7D2B4";
 const SKIN_SHADE = "#EC9460";
-const HAIR = "#211B18";
-const HAIR_LIGHT = "#6E4B33";
+const HAIR = "#2A221D";
+const HAIR_LIGHT = "#C49A45";
 const BLUSH = "#F07F68";
 const JACKET = "#DDD8CD";
 const JACKET_SHADE = "#B9B2A5";
@@ -156,7 +156,7 @@ export default function PastelCharacter({ className, style }: { className?: stri
 
               {/* Brows, eyes, nose, mouth */}
               <g filter="url(#pc-pencil)" {...line}>
-                <path d="M172 118c8-4 18-5 26-2M224 116c8-3 18-2 26 2" strokeWidth="2.6" />
+                <path d="M172 121c8-3 18-4 26-2M224 119c8-2 18-1 26 2" strokeWidth="2.6" />
                 <g className="pc-blink">
                   <ellipse cx="186" cy="143" rx="2.8" ry="3.6" fill={INK} stroke="none" />
                   <ellipse cx="236" cy="143" rx="2.8" ry="3.6" fill={INK} stroke="none" />
@@ -176,21 +176,24 @@ export default function PastelCharacter({ className, style }: { className?: stri
                 <path className="pc-glint" d="M152 166l24-48h9l-24 48zM208 166l24-48h5l-24 48z" fill="#FFFFFF" opacity="0.55" />
               </g>
 
-              {/* Short dark hair: full crown, trimmed sides, a fringe falling over the forehead */}
+              {/* Short dark hair: a rounded, full crown and a heavy fringe swept from the right
+                  into pointed strands just above the brows, with ink strand lines and warm
+                  golden light along the top */}
               <g filter="url(#pc-ink)">
                 <path fill={HAIR} {...ink}
-                  d="M152 140c-12-30-10-62 8-84 6-8 14-12 22-14l-4-10c8 0 14 4 18 8 6-6 16-8 26-8l2-8c6 2 10 6 12 10 22 2 40 14 48 34 8 18 8 42 -2 70l-6 10c-2-14-2-26 0-34l-8-6c0-10-2-20-6-28-4 8-8 14-14 18l-2-14c-6 8-14 12-22 14l2-12c-8 8-18 12-30 14l4-12c-10 6-20 8-30 8l6-10c-12 4-20 12-26 22l-4 10-6-12z" />
-                              </g>
-              {/* Warm highlights catching the light on the crown */}
-              <g filter="url(#pc-pencil)" stroke={HAIR_LIGHT} strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.9">
-                <path d="M168 64c14-10 30-14 46-14M228 50c16 2 30 10 38 22M176 80c8-8 18-12 28-14" />
+                  d="M150 138C140 112 141 80 159 59 175 41 195 33 216 33c26 0 46 12 58 32 11 19 11 45 4 70Q279 137.5 272 146Q268 133 266 116Q267 116 260 122Q256 113 254 100Q254 103 246 112Q241 103 238 90Q236 97 226 110Q223 107 222 100Q220 103 210 112Q206 108 204 100Q202 103.5 192 113Q188 109.5 186 102Q184 105 174 114Q170 111 168 104Q168 110 160 122Q157 119 156 112Q157 122 150 138z" />
               </g>
+              <g filter="url(#pc-pencil)" stroke={HAIR_LIGHT} strokeLinecap="round" fill="none">
+                <path d="M160 70c4-7 9-13 15-18M181 47c7-5 15-8 24-10M212 38c6 0 11 1 16 2" strokeWidth="4" opacity="0.95" />
+                <path d="M246 44c8 4 16 11 22 20M273 84c3 8 4 16 4 24" strokeWidth="3" opacity="0.8" />
+                <path d="M168 66c3-4 6-7 9-9M192 52l9-3" strokeWidth="2" opacity="0.7" />
+              </g>
+              <g filter="url(#pc-pencil)" stroke="#0E0A08" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.9">
+                <path d="M246 50c-2 18-8 34-18 48M258 60c2 16 0 30-6 44M268 76c3 14 2 28-2 40M230 46c-8 18-20 34-34 50M214 44c-10 16-22 30-36 42M200 50c-10 14-22 28-34 38M186 60c-10 14-18 30-24 48M274 100c2 12 0 24-2 34M224 70c-6 10-12 18-20 24M244 74c-2 8-6 16-10 22" />
+              </g>
+              {/* A few loose strands at the front that sway */}
               <g className="pc-fringe" filter="url(#pc-ink)">
-                <path fill={HAIR} {...ink}
-                  d="M214 70c-10 14-18 30-22 50 8-6 14-14 18-24 0 10 2 18 6 24 2-12 4-22 10-32 2 10 8 18 14 22-2-14-4-28-10-40z" />
-              </g>
-              <g filter="url(#pc-pencil)" stroke="#4A3E37" strokeWidth="1.4" strokeLinecap="round" fill="none">
-                <path d="M196 92c-4 8-6 16-6 22M232 84c4 6 8 12 10 20" />
+                <path fill={HAIR} {...ink} strokeWidth="2.2" d="M236 76c-6 14-14 26-26 38 8-2 16-8 22-16-2 6-4 12-8 16 10-6 16-16 18-28z" />
               </g>
             </g>
           </g>
