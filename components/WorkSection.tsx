@@ -63,7 +63,7 @@ export default function WorkSection() {
       <div className="work-header" style={{ marginBottom: 80, opacity: 0, textAlign: "center" }}>
         <h2 className="font-serif" style={{ fontSize: "clamp(40px, 6vw, 80px)", color: "#303841", lineHeight: 1.1 }}>
           Selected<br/>
-          <span style={{ color: "#76ABAE", fontStyle: "italic" }}>AI Projects</span>
+          <span className="scribble" style={{ color: "#76ABAE", fontStyle: "italic" }}>AI Projects</span>
         </h2>
         <p style={{ fontSize: 18, color: "rgba(48,56,65,0.6)", marginTop: 24, maxWidth: 600, margin: "24px auto 0" }}>
           Production-grade systems showcasing LLM integration, real-time inference, and scalable microservice architectures.

@@ -117,7 +117,7 @@ export default function QuantizationSimulator() {
       {/* Simulator Metrics Dashboard */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 20, marginBottom: 40 }}>
         
-        <div className="sim-metric" style={{ background: "#F5F5F5", borderRadius: 16, padding: 24 }}>
+        <div className="sim-metric" style={{ background: "var(--paper-deep)", borderRadius: 16, padding: 24 }}>
           <div style={{ fontSize: 12, color: "rgba(48,56,65,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>Inference Latency</div>
           <div className="font-serif" style={{ fontSize: 36, fontWeight: 600, color: DATA[precision].color }}>
             {DATA[precision].latency}ms
@@ -125,7 +125,7 @@ export default function QuantizationSimulator() {
           <div style={{ fontSize: 13, color: "rgba(48,56,65,0.5)", marginTop: 8 }}>{DATA[precision].speed}</div>
         </div>
 
-        <div className="sim-metric" style={{ background: "#F5F5F5", borderRadius: 16, padding: 24 }}>
+        <div className="sim-metric" style={{ background: "var(--paper-deep)", borderRadius: 16, padding: 24 }}>
           <div style={{ fontSize: 12, color: "rgba(48,56,65,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>Model Size</div>
           <div className="font-serif" style={{ fontSize: 36, fontWeight: 600, color: "#303841" }}>
             {DATA[precision].size}
@@ -133,7 +133,7 @@ export default function QuantizationSimulator() {
           <div style={{ fontSize: 13, color: "rgba(48,56,65,0.5)", marginTop: 8 }}>VRAM allocated</div>
         </div>
 
-        <div className="sim-metric" style={{ background: "#F5F5F5", borderRadius: 16, padding: 24 }}>
+        <div className="sim-metric" style={{ background: "var(--paper-deep)", borderRadius: 16, padding: 24 }}>
           <div style={{ fontSize: 12, color: "rgba(48,56,65,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>Accuracy Target</div>
           <div className="font-serif" style={{ fontSize: 36, fontWeight: 600, color: "#303841" }}>
             {DATA[precision].accuracy}

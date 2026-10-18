@@ -1,11 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 @import "tailwindcss";
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* User requested palette */
-  --bg: #F5F5F5;
+  /* Palette: original teal/orange accents on matte drawing paper */
+  --bg: #F4EFE6;
+  --paper: #FFFCF6;
+  --paper-deep: #EFE8DC;
+  --pencil: rgba(47,42,40,0.55);
+  --hood: #3E7CB1;
+  --blush: #F08A84;
   --text: #303841;
   --teal: #76ABAE;
   --orange: #FF5722;
@@ -19,7 +23,7 @@ html { overflow-x: hidden; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -33,7 +37,7 @@ body {
 
 /* Typography */
 .font-serif {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair), Georgia, serif;
 }
 
 h1, h2, h3, h4 {
@@ -149,7 +153,7 @@ h1, h2, h3, h4 {
   background: transparent;
   padding: 16px 0;
   font-size: 18px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   color: var(--text);
   outline: none;
   transition: border-color 0.3s;
@@ -295,7 +299,7 @@ h1, h2, h3, h4 {
 }
 .book-body { flex: 1; min-height: 0; position: relative; z-index: 1; }
 .book-folio {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair), Georgia, serif;
   font-size: 13px;
   color: rgba(48,56,65,0.45);
   text-align: center;
@@ -310,7 +314,7 @@ h1, h2, h3, h4 {
   margin-bottom: 8px;
 }
 .book-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair), Georgia, serif;
   font-size: 34px;
   line-height: 1.1;
   margin-bottom: 20px;
@@ -330,7 +334,7 @@ h1, h2, h3, h4 {
   margin-bottom: 14px;
 }
 .book-dropcap::first-letter {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair), Georgia, serif;
   float: left;
   font-size: 56px;
   line-height: 0.9;
@@ -353,7 +357,7 @@ h1, h2, h3, h4 {
 }
 .book-link:hover { text-decoration: underline; }
 .book-quote {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-playfair), Georgia, serif;
   font-style: italic;
   font-size: 22px;
   line-height: 1.4;
@@ -392,4 +396,120 @@ h1, h2, h3, h4 {
 
 @media (prefers-reduced-motion: reduce) {
   .book, .book-leaf, .book-base { transition: none; }
+}
+
+/* ══════════════════════════════
+   HERO WITH PASTEL CHARACTER
+══════════════════════════════ */
+.hero-grid {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1180px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 48px;
+  padding-top: 96px;
+}
+.hero-copy { order: 1; }
+.hero-art { order: 2; display: flex; justify-content: center; }
+.hero-art .pastel-character { width: 100%; max-width: 460px; height: auto; overflow: visible; }
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 8px; text-align: center; padding-top: 110px; }
+  .hero-art { order: 0; }
+  .hero-art .pastel-character { max-width: 270px; }
+  .hero-desc { margin-left: auto !important; margin-right: auto !important; }
+  .hero-cta { justify-content: center; }
+}
+
+/* Character animation: gentle breathing, blinking, drifting doodles, warming blush */
+.pc-body { transform-box: fill-box; transform-origin: 50% 100%; animation: pc-breathe 4.8s ease-in-out infinite; }
+.pc-head { transform-box: view-box; transform-origin: 208px 330px; }
+.pc-eyes { transform-box: fill-box; transform-origin: center; animation: pc-blink 5.5s infinite; }
+.pc-blush { animation: pc-blush 6s ease-in-out infinite; }
+.pc-doodle { animation: pc-float 6s ease-in-out infinite; }
+.pc-doodle-b { animation-delay: -2s; animation-duration: 7s; }
+.pc-doodle-c { animation-delay: -4s; animation-duration: 8s; }
+.pc-backdrop { transform-box: fill-box; transform-origin: center; animation: pc-wobble 14s ease-in-out infinite; }
+
+@keyframes pc-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.01, 1.025); } }
+@keyframes pc-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+@keyframes pc-blush { 0%, 100% { opacity: 0.55; } 50% { opacity: 0.8; } }
+@keyframes pc-float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-8px) rotate(3deg); } }
+@keyframes pc-wobble { 0%, 100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(4deg) scale(1.02); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-body, .pc-eyes, .pc-blush, .pc-doodle, .pc-backdrop { animation: none; }
+}
+
+/* ══════════════════════════════
+   HAND-DRAWN PASTEL STYLE
+   Matte paper grain, hand-cut shapes and wobbly pencil outlines
+══════════════════════════════ */
+.hand { font-family: var(--font-caveat), cursive; font-weight: 700; letter-spacing: 0; }
+
+/* Paper tooth over the whole page */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.3 0 0 0 0 0.25 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+}
+
+/* Cards: hand-cut corners on warm paper with a pencil outline */
+.clean-card {
+  position: relative;
+  background: var(--paper);
+  border-radius: 22px 30px 18px 34px / 30px 20px 34px 22px;
+  box-shadow: 0 18px 30px -22px rgba(80,60,40,0.25);
+}
+.clean-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.6px solid var(--pencil);
+  border-radius: inherit;
+  filter: url(#sk-pencil);
+  pointer-events: none;
+}
+.clean-card:hover { transform: translateY(-6px) rotate(-0.4deg); }
+
+/* Buttons look cut from coloured paper */
+.btn-primary, .btn-secondary { position: relative; border-radius: 26px 32px 24px 34px / 30px 24px 32px 26px; }
+.btn-secondary { border-color: transparent; }
+.btn-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.6px solid var(--pencil);
+  border-radius: inherit;
+  filter: url(#sk-pencil);
+  pointer-events: none;
+}
+.btn-secondary:hover { border-color: transparent; background: rgba(62,124,177,0.06); }
+.btn-primary:hover { background: var(--hood); transform: translateY(-2px) rotate(-1deg); }
+
+/* Scribbled pastel underline under accent words */
+.scribble {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'%3E%3Cpath d='M4 15c40-8 82-10 124-6s92 6 168-4M10 20c60-6 120-7 180-3 34 2 70 1 100-4' fill='none' stroke='%23F08A84' stroke-width='5' stroke-linecap='round' opacity='.75'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 0.32em;
+  background-position: 0 92%;
+  padding-bottom: 0.06em;
+}
+
+/* Hero blobs become soft pastel smudges */
+.parallax-shape { opacity: 0.8; }
+
+/* Pencil outline on the nav pill and the book */
+.pill-nav-container { background: rgba(255,252,246,0.82); border-color: rgba(47,42,40,0.12); }
+.book-paper { background: #FFFCF6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .clean-card:hover, .btn-primary:hover { transform: none; }
 }

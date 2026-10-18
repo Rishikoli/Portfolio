@@ -41,7 +41,7 @@ export default function ContactSection() {
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <h2 className="font-serif contact-up" style={{ fontSize: "clamp(40px, 6vw, 72px)", color: "#303841", lineHeight: 1.1, marginBottom: 24, opacity: 0 }}>
             Let&apos;s build<br/>
-            <span style={{ color: "#FF5722", fontStyle: "italic" }}>something great.</span>
+            <span className="scribble" style={{ color: "#FF5722", fontStyle: "italic" }}>something great.</span>
           </h2>
           <p className="contact-up" style={{ fontSize: 16, color: "rgba(48,56,65,0.6)", maxWidth: 500, margin: "0 auto", opacity: 0 }}>
             I am currently open to ML Engineer Internship opportunities. Drop a message or email me directly.

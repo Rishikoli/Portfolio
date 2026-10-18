@@ -73,7 +73,7 @@ export default function AboutSection() {
       <div>
         <div className="about-line" style={{ textAlign: "center", marginBottom: 64 }}>
           <h2 className="font-serif" style={{ fontSize: "clamp(40px, 6vw, 64px)", color: "#303841" }}>
-            Track <span style={{ color: "#FF5722", fontStyle: "italic" }}>Record</span>
+            Track <span className="scribble" style={{ color: "#FF5722", fontStyle: "italic" }}>Record</span>
           </h2>
           <p style={{ fontSize: 16, color: "rgba(48,56,65,0.6)", marginTop: 16 }}>Demonstrated excellence in AI innovation and rapid prototyping.</p>
         </div>

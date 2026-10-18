@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import PastelCharacter from "./PastelCharacter";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
@@ -65,30 +66,32 @@ export default function HeroSection() {
   return (
     <section ref={secRef} style={{ minHeight: "100vh", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", padding: "0 24px" }}>
       
-      <div className="grid-lines" />
-
       {/* Abstract geometric parallax shape */}
       <div className="parallax-shape" style={{ position: "absolute", top: "15%", right: "10%", width: "40vw", height: "40vw", background: "radial-gradient(circle, rgba(118,171,174,0.15) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(40px)", pointerEvents: "none" }} />
       <div className="parallax-shape" style={{ position: "absolute", bottom: "10%", left: "5%", width: "30vw", height: "30vw", background: "radial-gradient(circle, rgba(255,87,34,0.1) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(40px)", pointerEvents: "none", animationDelay: "1s" }} />
 
-      <div style={{ position: "relative", zIndex: 10, textAlign: "center", maxWidth: 1000, width: "100%" }}>
+      <div className="hero-grid">
+      <div className="hero-art">
+        <PastelCharacter />
+      </div>
+      <div className="hero-copy">
         
-        <div className="hero-tag" style={{ display: "inline-block", padding: "8px 20px", borderRadius: 999, background: "rgba(118,171,174,0.1)", color: "#76ABAE", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 40, border: "1px solid rgba(118,171,174,0.2)" }}>
-          Machine Learning Engineer
+        <div className="hero-tag hand" style={{ display: "inline-block", color: "#3E7CB1", fontSize: 28, marginBottom: 20, transform: "rotate(-2deg)" }}>
+          hi, I&apos;m an ML engineer ✎
         </div>
 
         <div style={{ position: "relative", display: "inline-block", width: "100%" }}>
-          <h1 className="hero-title font-serif" style={{ fontSize: "clamp(60px, 11vw, 140px)", color: "#303841", perspective: 1000, position: "relative", zIndex: 1 }}>
+          <h1 className="hero-title font-serif" style={{ fontSize: "clamp(56px, 9vw, 124px)", color: "#303841", perspective: 1000, position: "relative", zIndex: 1 }}>
             <div style={{ overflow: "hidden" }}><div className="hero-title-line">Rishikesh</div></div>
             <div style={{ overflow: "hidden" }}><div className="hero-title-line" style={{ color: "#FF5722", fontStyle: "italic" }}>Koli</div></div>
           </h1>
         </div>
 
-        <p className="hero-desc" style={{ fontSize: "clamp(18px, 2.5vw, 24px)", color: "rgba(48,56,65,0.6)", maxWidth: 700, margin: "40px auto", lineHeight: 1.6, fontWeight: 300 }}>
+        <p className="hero-desc" style={{ fontSize: "clamp(18px, 2.2vw, 22px)", color: "rgba(48,56,65,0.65)", maxWidth: 560, margin: "32px 0 40px", lineHeight: 1.6, fontWeight: 300 }}>
           I architect intelligent systems, orchestrate LLM pipelines, and ship production-ready AI. Computer Science Graduate with a passion for robust, scalable engineering.
         </p>
 
-        <div className="hero-cta" style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
+        <div className="hero-cta" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
           <button className="btn-primary" onClick={() => scrollTo("work")}>
             View Selected Work
           </button>
@@ -99,6 +102,7 @@ export default function HeroSection() {
             Get in touch
           </a>
         </div>
+      </div>
       </div>
     </section>
   );

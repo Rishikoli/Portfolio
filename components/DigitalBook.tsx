@@ -86,7 +86,7 @@ function buildPages(goTo: (page: number) => void): Page[] {
           <div className="book-kicker" style={{ color: "#76ABAE" }}>A field notebook</div>
           <div style={{ marginTop: "auto" }}>
             <h2 className="font-serif" style={{ fontSize: 58, lineHeight: 1, color: "#F5F5F5" }}>
-              Rishikesh<br /><span style={{ color: "#FF5722", fontStyle: "italic" }}>Koli</span>
+              Rishikesh<br /><span className="scribble" style={{ color: "#FF5722", fontStyle: "italic" }}>Koli</span>
             </h2>
             <p style={{ marginTop: 20, fontSize: 16, color: "rgba(245,245,245,0.7)", lineHeight: 1.5 }}>
               Notes on building machine learning systems that survive production.
@@ -297,7 +297,7 @@ export default function DigitalBook() {
     <section id="book" style={{ padding: "140px 0 40px", maxWidth: 1200, margin: "0 auto", paddingLeft: 24, paddingRight: 24 }}>
       <div style={{ textAlign: "center", marginBottom: 56 }}>
         <h2 className="font-serif" style={{ fontSize: "clamp(40px, 6vw, 80px)", color: "#303841", lineHeight: 1.1 }}>
-          The <span style={{ color: "#FF5722", fontStyle: "italic" }}>Notebook</span>
+          The <span className="scribble" style={{ color: "#FF5722", fontStyle: "italic" }}>Notebook</span>
         </h2>
         <p style={{ fontSize: 18, color: "rgba(48,56,65,0.6)", marginTop: 24, maxWidth: 560, marginLeft: "auto", marginRight: "auto" }}>
           My work, one chapter at a time. Drag, tap, or use the arrow keys to turn the pages.
