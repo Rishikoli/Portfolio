@@ -414,7 +414,7 @@ h1, h2, h3, h4 {
 }
 .hero-copy { order: 1; }
 .hero-art { order: 2; display: flex; justify-content: center; }
-.hero-art .pastel-character { width: 100%; max-width: 460px; height: auto; overflow: visible; }
+.hero-art .pastel-character { width: 100%; max-width: 460px; height: auto; overflow: hidden; }
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 8px; text-align: center; padding-top: 110px; }
   .hero-art { order: 0; }
@@ -423,59 +423,52 @@ h1, h2, h3, h4 {
   .hero-cta { justify-content: center; }
 }
 
-/* Character animation, on a shared 9s cycle: he types with eyes down, nodding along; at
-   ~12–36% he looks up, smiles and waves with a "hey!" bubble; steam, plant and ideas loop */
+/* Character animation on a shared 9s cycle: breathing, swaying fringe, blinking, a glint
+   across the glasses, and at ~12–36% the hand rises to wave with a smile and a "hey!" */
 .pastel-character { cursor: pointer; }
-.pc-head, .pc-eyes-down, .pc-eyes-up, .pc-mouth-calm, .pc-mouth-smile,
-.pc-arm-wave, .pc-arm-type, .pc-hand-r, .pc-bubble { animation-duration: 9s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
-.pc-head { transform-box: view-box; transform-origin: 221px 240px; animation-name: pc-head; }
-.pc-eyes-down, .pc-mouth-calm, .pc-arm-type, .pc-hand-r { animation-name: pc-typing-only; }
-.pc-eyes-up, .pc-mouth-smile, .pc-arm-wave, .pc-bubble { animation-name: pc-wave-only; opacity: 0; }
-.pc-bubble { transform-box: view-box; transform-origin: 370px 160px; animation-name: pc-bubble; }
-.pc-arm-wave-swing { transform-box: view-box; transform-origin: 322px 316px; animation: pc-swing 0.55s ease-in-out infinite alternate; }
-.pc-blink { transform-box: fill-box; transform-origin: center; animation: pc-blink 3.4s infinite; }
-.pc-hand-l > *, .pc-hand-r > * { animation: pc-tap 0.32s ease-in-out infinite alternate; }
-.pc-hand-r > * { animation-delay: -0.16s; }
-.pc-blush { animation: pc-blush 5s ease-in-out infinite; }
-.pc-steam > * { stroke-dasharray: 1; animation: pc-steam 3.2s ease-in-out infinite; }
-.pc-steam > :nth-child(2) { animation-delay: -1.6s; }
-.pc-plant { transform-box: view-box; transform-origin: 95px 342px; animation: pc-sway 4s ease-in-out infinite; }
-.pc-laptop-glow { animation: pc-glow 2.8s ease-in-out infinite; }
+.pc-head, .pc-mouth-calm, .pc-mouth-smile, .pc-wave, .pc-bubble, .pc-blush {
+  animation-duration: 9s; animation-iteration-count: infinite; animation-timing-function: ease-in-out;
+}
+.pc-body { transform-box: view-box; transform-origin: 210px 460px; animation: pc-breathe 4s ease-in-out infinite; }
+.pc-head { transform-box: view-box; transform-origin: 211px 236px; animation-name: pc-head; }
+.pc-fringe { transform-box: view-box; transform-origin: 206px 104px; animation: pc-fringe 3s ease-in-out infinite; }
+.pc-blink { transform-box: fill-box; transform-origin: center; animation: pc-blink 3.8s infinite; }
+.pc-glint { animation: pc-glint 5s ease-in-out infinite; }
+.pc-mouth-calm { animation-name: pc-calm-only; }
+.pc-mouth-smile { animation-name: pc-wave-only; opacity: 0; }
+.pc-blush { animation-name: pc-blush; }
+.pc-wave { transform-box: view-box; animation-name: pc-wave-rise; transform: translateY(190px); }
+.pc-wave-swing { transform-box: view-box; transform-origin: 350px 440px; animation: pc-swing 0.5s ease-in-out infinite alternate; }
+.pc-bubble { opacity: 0; transform-box: view-box; transform-origin: 70px 130px; animation-name: pc-bubble; }
 .pc-idea { opacity: 0; animation: pc-rise 4.5s ease-out infinite; }
 .pc-idea-b { animation-delay: 1.5s; }
 .pc-idea-c { animation-delay: 3s; }
 .pc-backdrop { transform-box: fill-box; transform-origin: center; animation: pc-wobble 14s ease-in-out infinite; }
 
+@keyframes pc-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 @keyframes pc-head {
-  0%, 8% { transform: translateY(3px) rotate(1.5deg); }
-  13%, 33% { transform: translateY(-3px) rotate(-3deg); }
-  38% { transform: translateY(3px) rotate(1.5deg); }
-  46% { transform: translateY(5px) rotate(0.5deg); }
-  54% { transform: translateY(3px) rotate(2deg); }
-  62% { transform: translateY(5px) rotate(0.5deg); }
-  70% { transform: translateY(3px) rotate(2deg); }
-  78% { transform: translateY(5px) rotate(0.5deg); }
-  86%, 100% { transform: translateY(3px) rotate(1.5deg); }
+  0%, 10% { transform: rotate(0deg); }
+  15%, 32% { transform: rotate(-5deg) translateY(-2px); }
+  38%, 60% { transform: rotate(1.5deg); }
+  70%, 100% { transform: rotate(0deg); }
 }
-@keyframes pc-typing-only { 0%, 11% { opacity: 1; } 13%, 34% { opacity: 0; } 36%, 100% { opacity: 1; } }
+@keyframes pc-fringe { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2.5deg) translateY(1px); } }
+@keyframes pc-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+@keyframes pc-glint { 0%, 55% { transform: translateX(-60px); } 75%, 100% { transform: translateX(80px); } }
+@keyframes pc-calm-only { 0%, 11% { opacity: 1; } 13%, 34% { opacity: 0; } 36%, 100% { opacity: 1; } }
 @keyframes pc-wave-only { 0%, 11% { opacity: 0; } 13%, 34% { opacity: 1; } 36%, 100% { opacity: 0; } }
+@keyframes pc-blush { 0%, 10%, 40%, 100% { opacity: 0.6; } 16%, 32% { opacity: 0.95; } }
+@keyframes pc-wave-rise {
+  0%, 9% { transform: translateY(190px); }
+  15%, 31% { transform: translateY(0); }
+  38%, 100% { transform: translateY(190px); }
+}
+@keyframes pc-swing { from { transform: rotate(-8deg); } to { transform: rotate(8deg); } }
 @keyframes pc-bubble {
   0%, 12% { opacity: 0; transform: scale(0.6); }
   15%, 33% { opacity: 1; transform: scale(1); }
   36%, 100% { opacity: 0; transform: scale(0.8); }
 }
-@keyframes pc-swing { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
-@keyframes pc-tap { from { transform: translateY(0); } to { transform: translateY(-3px); } }
-@keyframes pc-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
-@keyframes pc-blush { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.65; } }
-@keyframes pc-steam {
-  0% { stroke-dashoffset: 1; opacity: 0; transform: translateY(6px); }
-  30% { opacity: 1; }
-  70% { stroke-dashoffset: 0; opacity: 0.8; }
-  100% { stroke-dashoffset: 0; opacity: 0; transform: translateY(-10px); }
-}
-@keyframes pc-sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
-@keyframes pc-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 @keyframes pc-rise {
   0% { opacity: 0; transform: translateY(20px) scale(0.7); }
   20% { opacity: 1; }
@@ -486,8 +479,7 @@ h1, h2, h3, h4 {
 
 @media (prefers-reduced-motion: reduce) {
   .pastel-character * { animation: none !important; }
-  .pc-idea, .pc-eyes-up, .pc-mouth-smile { opacity: 1; }
-  .pc-eyes-down, .pc-mouth-calm { opacity: 0; }
+  .pc-idea { opacity: 1; }
 }
 
 /* ══════════════════════════════
