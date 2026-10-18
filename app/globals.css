@@ -423,59 +423,59 @@ h1, h2, h3, h4 {
   .hero-cta { justify-content: center; }
 }
 
-/* Character animation: sketching hand, self-drawing net, bobbing head with a bouncy
-   pom-pom, blinking, rising ideas, and a wave + "hi!" every few seconds (or on click) */
+/* Character animation, on a shared 9s cycle: he types with eyes down, nodding along; at
+   ~12–36% he looks up, smiles and waves with a "hey!" bubble; steam, plant and ideas loop */
 .pastel-character { cursor: pointer; }
-.pc-body { transform-box: view-box; transform-origin: 212px 440px; animation: pc-breathe 4s ease-in-out infinite; }
-.pc-head { transform-box: view-box; transform-origin: 212px 218px; animation: pc-bob 2.6s ease-in-out infinite; }
-.pc-pompom { transform-box: view-box; transform-origin: 214px 74px; animation: pc-pompom 2.6s ease-in-out -0.35s infinite; }
-.pc-eyes { transform-box: fill-box; transform-origin: center; animation: pc-blink 4.6s infinite; }
+.pc-head, .pc-eyes-down, .pc-eyes-up, .pc-mouth-calm, .pc-mouth-smile,
+.pc-arm-wave, .pc-arm-type, .pc-hand-r, .pc-bubble { animation-duration: 9s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
+.pc-head { transform-box: view-box; transform-origin: 221px 240px; animation-name: pc-head; }
+.pc-eyes-down, .pc-mouth-calm, .pc-arm-type, .pc-hand-r { animation-name: pc-typing-only; }
+.pc-eyes-up, .pc-mouth-smile, .pc-arm-wave, .pc-bubble { animation-name: pc-wave-only; opacity: 0; }
+.pc-bubble { transform-box: view-box; transform-origin: 370px 160px; animation-name: pc-bubble; }
+.pc-arm-wave-swing { transform-box: view-box; transform-origin: 322px 316px; animation: pc-swing 0.55s ease-in-out infinite alternate; }
+.pc-blink { transform-box: fill-box; transform-origin: center; animation: pc-blink 3.4s infinite; }
+.pc-hand-l > *, .pc-hand-r > * { animation: pc-tap 0.32s ease-in-out infinite alternate; }
+.pc-hand-r > * { animation-delay: -0.16s; }
 .pc-blush { animation: pc-blush 5s ease-in-out infinite; }
-.pc-arm-draw { animation: pc-scribble 1.1s ease-in-out infinite; }
-.pc-arm-wave { transform-box: view-box; transform-origin: 162px 228px; transform: rotate(-141.5deg); animation: pc-wave 9s ease-in-out 1.2s infinite; }
-.pc-bubble { opacity: 0; transform-box: view-box; transform-origin: 96px 130px; animation: pc-bubble 9s ease-in-out 1.2s infinite; }
-.pc-sketch > * { stroke-dasharray: 1; stroke-dashoffset: 1; animation: pc-draw 7s ease-in-out infinite; }
-.pc-sketch > :nth-child(2) { animation-delay: 0.3s; }
-.pc-sketch > :nth-child(3) { animation-delay: 0.5s; }
-.pc-sketch > :nth-child(4) { animation-delay: 0.7s; }
-.pc-sketch > :nth-child(5) { animation-delay: 0.9s; }
-.pc-sketch > :nth-child(6) { animation-delay: 1.1s; }
-.pc-sketch > :nth-child(7) { animation-delay: 1.3s; }
+.pc-steam > * { stroke-dasharray: 1; animation: pc-steam 3.2s ease-in-out infinite; }
+.pc-steam > :nth-child(2) { animation-delay: -1.6s; }
+.pc-plant { transform-box: view-box; transform-origin: 95px 342px; animation: pc-sway 4s ease-in-out infinite; }
+.pc-laptop-glow { animation: pc-glow 2.8s ease-in-out infinite; }
 .pc-idea { opacity: 0; animation: pc-rise 4.5s ease-out infinite; }
 .pc-idea-b { animation-delay: 1.5s; }
 .pc-idea-c { animation-delay: 3s; }
 .pc-backdrop { transform-box: fill-box; transform-origin: center; animation: pc-wobble 14s ease-in-out infinite; }
 
-@keyframes pc-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.005, 1.015); } }
-@keyframes pc-bob { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg) translateY(-2px); } }
-@keyframes pc-pompom { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } }
-@keyframes pc-blink { 0%, 90%, 100% { transform: scaleY(1); } 94% { transform: scaleY(0.1); } }
-@keyframes pc-blush { 0%, 100% { opacity: 0.55; } 50% { opacity: 0.85; } }
-@keyframes pc-scribble {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(-6px, 3px); }
-  50% { transform: translate(2px, 6px); }
-  75% { transform: translate(-4px, -2px); }
+@keyframes pc-head {
+  0%, 8% { transform: translateY(3px) rotate(1.5deg); }
+  13%, 33% { transform: translateY(-3px) rotate(-3deg); }
+  38% { transform: translateY(3px) rotate(1.5deg); }
+  46% { transform: translateY(5px) rotate(0.5deg); }
+  54% { transform: translateY(3px) rotate(2deg); }
+  62% { transform: translateY(5px) rotate(0.5deg); }
+  70% { transform: translateY(3px) rotate(2deg); }
+  78% { transform: translateY(5px) rotate(0.5deg); }
+  86%, 100% { transform: translateY(3px) rotate(1.5deg); }
 }
-@keyframes pc-wave {
-  0% { transform: rotate(-141.5deg); }
-  8% { transform: rotate(8deg); }
-  12% { transform: rotate(-14deg); }
-  16% { transform: rotate(10deg); }
-  20% { transform: rotate(-14deg); }
-  24% { transform: rotate(8deg); }
-  32%, 100% { transform: rotate(-141.5deg); }
-}
+@keyframes pc-typing-only { 0%, 11% { opacity: 1; } 13%, 34% { opacity: 0; } 36%, 100% { opacity: 1; } }
+@keyframes pc-wave-only { 0%, 11% { opacity: 0; } 13%, 34% { opacity: 1; } 36%, 100% { opacity: 0; } }
 @keyframes pc-bubble {
-  0%, 5% { opacity: 0; transform: scale(0.6); }
-  9%, 26% { opacity: 1; transform: scale(1); }
-  31%, 100% { opacity: 0; transform: scale(0.8); }
+  0%, 12% { opacity: 0; transform: scale(0.6); }
+  15%, 33% { opacity: 1; transform: scale(1); }
+  36%, 100% { opacity: 0; transform: scale(0.8); }
 }
-@keyframes pc-draw {
-  0% { stroke-dashoffset: 1; opacity: 1; }
-  55%, 82% { stroke-dashoffset: 0; opacity: 1; }
-  95%, 100% { stroke-dashoffset: 0; opacity: 0; }
+@keyframes pc-swing { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
+@keyframes pc-tap { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+@keyframes pc-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+@keyframes pc-blush { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.65; } }
+@keyframes pc-steam {
+  0% { stroke-dashoffset: 1; opacity: 0; transform: translateY(6px); }
+  30% { opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 0.8; }
+  100% { stroke-dashoffset: 0; opacity: 0; transform: translateY(-10px); }
 }
+@keyframes pc-sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes pc-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 @keyframes pc-rise {
   0% { opacity: 0; transform: translateY(20px) scale(0.7); }
   20% { opacity: 1; }
@@ -485,9 +485,9 @@ h1, h2, h3, h4 {
 @keyframes pc-wobble { 0%, 100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(4deg) scale(1.02); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .pc-body, .pc-head, .pc-pompom, .pc-eyes, .pc-blush, .pc-arm-draw, .pc-arm-wave, .pc-bubble, .pc-idea, .pc-backdrop { animation: none; }
-  .pc-sketch > * { animation: none; stroke-dashoffset: 0; }
-  .pc-idea { opacity: 1; }
+  .pastel-character * { animation: none !important; }
+  .pc-idea, .pc-eyes-up, .pc-mouth-smile { opacity: 1; }
+  .pc-eyes-down, .pc-mouth-calm { opacity: 0; }
 }
 
 /* ══════════════════════════════
