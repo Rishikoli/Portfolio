@@ -2,67 +2,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { GITHUB_PROFILE, PROJECTS, type Project } from "@/lib/content";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Set `repo` to the project's own repository URL and `image` to a screenshot in /public
-// (e.g. "/projects/nexus.png"). Until then the card links to the GitHub profile and
-// shows the architecture flow instead of a screenshot.
-const GITHUB_PROFILE = "https://github.com/Rishikoli";
-
-type Project = {
-  id: string;
-  title: string;
-  subtitle: string;
-  year: string;
-  desc: string;
-  tech: string[];
-  metrics: string[];
-  flow: string[];
-  color: string;
-  repo: string;
-  demo?: string;
-  image?: string;
-};
-
-const PROJECTS: Project[] = [
-  {
-    id: "nexus",
-    title: "NEXUS Ray",
-    subtitle: "AI Agent Orchestration Framework",
-    year: "2025",
-    desc: "An event-driven AI orchestration framework for distributed intelligent workflows. Built scalable Python microservices for AI inference and workflow automation. Optimized AI inference latency using OpenVINO INT8 quantization, reducing model execution time for production deployments. Integrated OpenAI APIs with custom prompt engineering for intelligent automation.",
-    tech: ["Python", "Apache Kafka", "OpenVINO", "OpenAI APIs", "ChromaDB"],
-    metrics: ["60% Latency Reduction", "Event-Driven Inference"],
-    flow: ["Events", "Kafka", "Agent Services", "OpenVINO INT8", "ChromaDB"],
-    color: "#76ABAE",
-    repo: ""
-  },
-  {
-    id: "interview",
-    title: "InterviewMaster",
-    subtitle: "AI Interview Coaching Platform",
-    year: "2025",
-    desc: "An AI-powered coaching platform with real-time feedback loops and dynamic LLM-driven question generation. Implemented prompt engineering pipelines to simulate diverse interview scenarios. Built low-latency backend APIs using FastAPI supporting concurrent AI sessions, validating model outputs for accuracy.",
-    tech: ["FastAPI", "React", "OpenAI GPT-4", "WebSockets", "Redis"],
-    metrics: ["Low-Latency Sessions", "Dynamic LLM Prompting"],
-    flow: ["React UI", "WebSockets", "FastAPI", "GPT-4", "Live Feedback"],
-    color: "#FF5722",
-    repo: ""
-  },
-  {
-    id: "dementia",
-    title: "AI Dementia Assistant",
-    subtitle: "Cognitive Support LLM App",
-    year: "2024",
-    desc: "A human-centered AI assistant for dementia patients leveraging conversational LLM workflows for cognitive support and caregiver interaction. Engineered scalable REST APIs enabling real-time AI responses. Applied responsible AI design principles to ensure safe, personalized, and context-aware interactions.",
-    tech: ["FastAPI", "Next.js", "OpenAI Speech", "MongoDB Vector"],
-    metrics: ["Context-Aware Memory", "Responsible AI Guardrails"],
-    flow: ["Voice", "Speech API", "FastAPI", "LLM + Memory", "Caregiver"],
-    color: "#303841",
-    repo: ""
-  }
-];
 
 function ProjectVisual({ project: p }: { project: Project }) {
   if (p.image) {

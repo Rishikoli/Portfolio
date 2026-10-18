@@ -2,39 +2,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ACHIEVEMENTS, TIMELINE } from "@/lib/content";
 gsap.registerPlugin(ScrollTrigger);
-
-const TIMELINE = [
-  {
-    period: "Jan – May 2026",
-    title: "Technical Intern",
-    org: "Maharashtra Remote Sensing Application Centre (MRSAC)",
-    note: "Worked under an Associate Scientist",
-    desc: "Spearheaded cloud computing and scalable system architectures under the direct guidance of an Associate Scientist. Developed advanced technical workflows, analyzed spatial/multidimensional datasets, and applied Agile methodologies to accelerate project lifecycles.",
-    color: "#76ABAE",
-  },
-  {
-    period: "2025",
-    title: "Intel Unnati Industrial Training",
-    org: "Intel",
-    desc: "Industrial training programme run by Intel.",
-    color: "#FF5722",
-  },
-  {
-    period: "Graduating May 2026",
-    title: "B.Tech, Computer Science and Business Systems",
-    org: "St. Vincent Pallotti College of Engineering, Nagpur",
-    desc: "Coursework in Artificial Intelligence, Machine Learning, Deep Learning, Cloud Computing and System Design.",
-    color: "#303841",
-  },
-];
-
-const ACHIEVEMENTS = [
-  { title: "NASA Space Apps Challenge", label: "Winner", color: "#FF5722", desc: "Led AI-driven rapid prototyping for space challenges." },
-  { title: "AIxplore Hackathon", label: "1st Prize", color: "#76ABAE", desc: "Intelligent ML automation — first place across all teams." },
-  { title: "Vodafone Idea Foundation Innovation Marathon", label: "Runner-Up", color: "#303841", desc: "AI-integrated solutions with scalable system design." },
-  { title: "TechSaksham Showcase", label: "Awarded", color: "#303841", desc: "Recognized by industry mentors for innovative AI." },
-];
 
 export default function AboutSection() {
   const secRef = useRef<HTMLElement>(null);

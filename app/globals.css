@@ -196,3 +196,200 @@ h1, h2, h3, h4 {
   transition: color 0.2s;
 }
 .footer-link:hover { color: var(--orange); }
+
+/* ══════════════════════════════
+   DIGITAL BOOK
+══════════════════════════════ */
+.btn-secondary:disabled { opacity: 0.35; cursor: default; border-color: var(--border); }
+
+.book-stage {
+  perspective: 2400px;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+  outline: none;
+}
+.book-stage:active { cursor: grabbing; }
+.book-stage:focus-visible { outline: 2px solid var(--teal); outline-offset: 12px; border-radius: 8px; }
+
+.book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.book-leaf {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.4s ease 0.5s;
+}
+.book-leaf.is-turned { transform: rotateY(-180deg); }
+.book-leaf.is-single.is-turned { opacity: 0; pointer-events: none; }
+
+.book-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 44px 44px 36px;
+  color: var(--text);
+}
+.book-back { transform: rotateY(180deg); }
+
+.book-paper { background: #FBF8F3; }
+
+/* One shadow under the visible pages, so stacked leaves don't band */
+.book-base {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 40px 70px -30px rgba(48,56,65,0.45), 0 2px 6px rgba(48,56,65,0.08);
+  transition: left 0.9s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+/* Shading toward the spine gives each page its curve */
+.book-paper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.book-front.book-paper { border-radius: 0 6px 6px 0; }
+.book-front.book-paper::after { background: linear-gradient(90deg, rgba(48,56,65,0.12), rgba(48,56,65,0.03) 6%, transparent 14%); }
+.book-back.book-paper { border-radius: 6px 0 0 6px; }
+.book-back.book-paper::after { background: linear-gradient(270deg, rgba(48,56,65,0.12), rgba(48,56,65,0.03) 6%, transparent 14%); }
+.book-blank { background-image: radial-gradient(rgba(48,56,65,0.05) 1px, transparent 1px); background-size: 18px 18px; }
+
+.book-cover {
+  background: linear-gradient(135deg, #3a444f 0%, #303841 55%, #262d35 100%);
+  color: #F5F5F5;
+  border-radius: 0 10px 10px 0;
+  box-shadow: inset 6px 0 12px -6px rgba(0,0,0,0.5);
+}
+.book-back.book-cover { border-radius: 10px 0 0 10px; box-shadow: inset -6px 0 12px -6px rgba(0,0,0,0.5); }
+.book-cover::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(118,171,174,0.35);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.book-header {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(48,56,65,0.4);
+  margin-bottom: 28px;
+}
+.book-body { flex: 1; min-height: 0; position: relative; z-index: 1; }
+.book-folio {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  color: rgba(48,56,65,0.45);
+  text-align: center;
+  margin-top: 12px;
+}
+.book-kicker {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.book-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.book-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(48,56,65,0.45);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.book-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(48,56,65,0.8);
+  margin-bottom: 14px;
+}
+.book-dropcap::first-letter {
+  font-family: 'Playfair Display', serif;
+  float: left;
+  font-size: 56px;
+  line-height: 0.9;
+  padding: 4px 8px 0 0;
+  color: var(--orange);
+}
+.book-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.book-list li { font-size: 15px; padding-left: 18px; position: relative; }
+.book-list li::before { content: "✺"; position: absolute; left: 0; color: var(--orange); font-size: 10px; top: 4px; }
+.book-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--orange);
+  text-decoration: none;
+  cursor: pointer;
+}
+.book-link:hover { text-decoration: underline; }
+.book-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--teal);
+  border-left: 3px solid var(--orange);
+  padding-left: 16px;
+}
+.book-contents { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.book-contents button {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 8px 0;
+  font: inherit;
+  font-size: 16px;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+}
+.book-contents button:hover { color: var(--orange); }
+.book-dots { flex: 1; border-bottom: 1px dotted rgba(48,56,65,0.3); transform: translateY(-4px); }
+.book-step-index {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book, .book-leaf, .book-base { transition: none; }
+}
