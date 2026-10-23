@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import PixelHero from "./PixelHero";
+import PastelCharacter from "./PastelCharacter";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
@@ -72,7 +72,7 @@ export default function HeroSection() {
 
       <div className="hero-grid">
       <div className="hero-art">
-        <PixelHero />
+        <PastelCharacter />
       </div>
       <div className="hero-copy">
         

@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Caveat, Inter, Playfair_Display, Press_Start_2P } from "next/font/google";
+import { Caveat, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 // Self-hosted by next/font; exposed as CSS variables used in globals.css
 const inter = Inter({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "600"], style: ["normal", "italic"], variable: "--font-playfair" });
 const caveat = Caveat({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-caveat" });
-const pixel = Press_Start_2P({ subsets: ["latin"], weight: "400", variable: "--font-pixel" });
 
 export const metadata: Metadata = {
   title: "Rishikesh Koli — ML Engineer & AI Systems Builder",
@@ -26,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${caveat.variable} ${pixel.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${caveat.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         {/* Shared hand-drawn filters: pencil outlines reference #sk-pencil */}
         <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden focusable="false">
