@@ -4,74 +4,70 @@ import gsap from "gsap";
 
 type Precision = "FP32" | "FP16" | "INT8";
 
+const DATA = {
+  FP32: {
+    latency: 620,
+    size: "28.4 GB",
+    accuracy: "99.8%",
+    vram: "32 GB",
+    vramPct: 90,
+    speed: "1.0x (Baseline)",
+    color: "#303841",
+    steps: [
+      "[INIT] Loading baseline model weights in FP32 format...",
+      "[MEM] VRAM allocated: 28.4 GB of 32 GB",
+      "[RUN] Baseline forward pass latency: 620ms",
+      "[OK] Baseline evaluation completed: Accuracy = 99.8%"
+    ]
+  },
+  FP16: {
+    latency: 310,
+    size: "14.2 GB",
+    accuracy: "99.7%",
+    vram: "16 GB",
+    vramPct: 45,
+    speed: "2.0x Faster",
+    color: "#76ABAE",
+    steps: [
+      "[COMPRESS] Casting FP32 weights to FP16 half-precision...",
+      "[MEM] Deallocated 14.2 GB of VRAM",
+      "[RUN] Forward pass latency: 310ms",
+      "[OK] FP16 evaluation completed: Accuracy = 99.7% (no loss)"
+    ]
+  },
+  INT8: {
+    latency: 145,
+    size: "7.1 GB",
+    accuracy: "99.1%",
+    vram: "8 GB",
+    vramPct: 22,
+    speed: "4.3x Faster",
+    color: "#FF5722",
+    steps: [
+      "[QUANT] Calibrating activations using KL Divergence...",
+      "[QUANT] Mapping range [-1.0, 1.0] to INT8 range [-128, 127]...",
+      "[MEM] Intel OpenVINO quantization engine configured...",
+      "[MEM] Deallocated 21.3 GB of VRAM. Current VRAM: 7.1 GB",
+      "[RUN] Quantized forward pass latency: 145ms",
+      "[OK] INT8 evaluation completed: Accuracy = 99.1% (Loss: ~0.7%)"
+    ]
+  }
+} as const;
+
 export default function QuantizationSimulator() {
   const [precision, setPrecision] = useState<Precision>("FP32");
   const [logs, setLogs] = useState<string[]>([]);
   const [running, setRunning] = useState(false);
 
-  const data = {
-    FP32: {
-      latency: 620,
-      size: "28.4 GB",
-      accuracy: "99.8%",
-      vram: "32 GB",
-      vramPct: 90,
-      speed: "1.0x (Baseline)",
-      color: "#303841",
-      steps: [
-        "[INIT] Loading baseline model weights in FP32 format...",
-        "[MEM] VRAM allocated: 28.4 GB of 32 GB",
-        "[RUN] Baseline forward pass latency: 620ms",
-        "[OK] Baseline evaluation completed: Accuracy = 99.8%"
-      ]
-    },
-    FP16: {
-      latency: 310,
-      size: "14.2 GB",
-      accuracy: "99.7%",
-      vram: "16 GB",
-      vramPct: 45,
-      speed: "2.0x Faster",
-      color: "#76ABAE",
-      steps: [
-        "[COMPRESS] Casting FP32 weights to FP16 half-precision...",
-        "[MEM] Deallocated 14.2 GB of VRAM",
-        "[RUN] Forward pass latency: 310ms",
-        "[OK] FP16 evaluation completed: Accuracy = 99.7% (no loss)"
-      ]
-    },
-    INT8: {
-      latency: 145,
-      size: "3.5 GB",
-      accuracy: "99.1%",
-      vram: "4 GB",
-      vramPct: 12,
-      speed: "4.3x Faster",
-      color: "#FF5722",
-      steps: [
-        "[QUANT] Calibrating activations using KL Divergence...",
-        "[QUANT] Mapping range [-1.0, 1.0] to INT8 range [-128, 127]...",
-        "[MEM] Intel OpenVINO quantization engine configured...",
-        "[MEM] Deallocated 24.9 GB of VRAM. Current VRAM: 3.5 GB",
-        "[RUN] Quantized forward pass latency: 145ms",
-        "[OK] INT8 evaluation completed: Accuracy = 99.1% (Loss: ~0.7%)"
-      ]
-    }
-  };
-
   useEffect(() => {
-    // Run simulation log output
-    setRunning(true);
-    setLogs([]);
-    const steps = data[precision].steps;
-    
-    let delay = 0;
+    // Run simulation log output; state updates happen in timers, not synchronously in the effect
+    const steps = DATA[precision].steps;
+    const timers = [setTimeout(() => { setRunning(true); setLogs([]); }, 0)];
     steps.forEach((step, i) => {
-      setTimeout(() => {
+      timers.push(setTimeout(() => {
         setLogs(prev => [...prev, step]);
         if (i === steps.length - 1) setRunning(false);
-      }, delay);
-      delay += 400;
+      }, (i + 1) * 400));
     });
 
     // Animate stats cards on precision change
@@ -79,6 +75,7 @@ export default function QuantizationSimulator() {
       { scale: 0.95, opacity: 0.8 }, 
       { scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" }
     );
+    return () => timers.forEach(clearTimeout);
   }, [precision]);
 
   return (
@@ -106,7 +103,7 @@ export default function QuantizationSimulator() {
                 fontSize: 14,
                 fontWeight: 600,
                 cursor: running ? "not-allowed" : "pointer",
-                background: precision === p ? data[p].color : "transparent",
+                background: precision === p ? DATA[p].color : "transparent",
                 color: precision === p ? "#fff" : "rgba(48,56,65,0.6)",
                 transition: "all 0.3s"
               }}
@@ -120,26 +117,26 @@ export default function QuantizationSimulator() {
       {/* Simulator Metrics Dashboard */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 20, marginBottom: 40 }}>
         
-        <div className="sim-metric" style={{ background: "#F5F5F5", borderRadius: 16, padding: 24 }}>
+        <div className="sim-metric" style={{ background: "var(--paper-deep)", borderRadius: 16, padding: 24 }}>
           <div style={{ fontSize: 12, color: "rgba(48,56,65,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>Inference Latency</div>
-          <div className="font-serif" style={{ fontSize: 36, fontWeight: 600, color: data[precision].color }}>
-            {data[precision].latency}ms
+          <div className="font-serif" style={{ fontSize: 36, fontWeight: 600, color: DATA[precision].color }}>
+            {DATA[precision].latency}ms
           </div>
-          <div style={{ fontSize: 13, color: "rgba(48,56,65,0.5)", marginTop: 8 }}>{data[precision].speed}</div>
+          <div style={{ fontSize: 13, color: "rgba(48,56,65,0.5)", marginTop: 8 }}>{DATA[precision].speed}</div>
         </div>
 
-        <div className="sim-metric" style={{ background: "#F5F5F5", borderRadius: 16, padding: 24 }}>
+        <div className="sim-metric" style={{ background: "var(--paper-deep)", borderRadius: 16, padding: 24 }}>
           <div style={{ fontSize: 12, color: "rgba(48,56,65,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>Model Size</div>
           <div className="font-serif" style={{ fontSize: 36, fontWeight: 600, color: "#303841" }}>
-            {data[precision].size}
+            {DATA[precision].size}
           </div>
           <div style={{ fontSize: 13, color: "rgba(48,56,65,0.5)", marginTop: 8 }}>VRAM allocated</div>
         </div>
 
-        <div className="sim-metric" style={{ background: "#F5F5F5", borderRadius: 16, padding: 24 }}>
+        <div className="sim-metric" style={{ background: "var(--paper-deep)", borderRadius: 16, padding: 24 }}>
           <div style={{ fontSize: 12, color: "rgba(48,56,65,0.4)", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 12 }}>Accuracy Target</div>
           <div className="font-serif" style={{ fontSize: 36, fontWeight: 600, color: "#303841" }}>
-            {data[precision].accuracy}
+            {DATA[precision].accuracy}
           </div>
           <div style={{ fontSize: 13, color: "rgba(48,56,65,0.5)", marginTop: 8 }}>Evaluation test set</div>
         </div>

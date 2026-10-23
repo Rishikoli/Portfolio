@@ -34,15 +34,20 @@ export default function CustomCursor() {
     const grow = () => gsap.to(ring, { width: 52, height: 52, duration: 0.3, ease: "power2.out" });
     const shrink = () => gsap.to(ring, { width: 32, height: 32, duration: 0.3, ease: "power2.out" });
 
+    // Delegated so links and buttons rendered after mount (e.g. form success state) also grow the ring
+    const isHoverTarget = (t: EventTarget | null) => t instanceof Element && !!t.closest("a,button,[data-hover]");
+    const onOver = (e: MouseEvent) => { if (isHoverTarget(e.target)) grow(); };
+    const onOut = (e: MouseEvent) => { if (isHoverTarget(e.target) && !isHoverTarget(e.relatedTarget)) shrink(); };
+
     window.addEventListener("mousemove", onMove);
-    document.querySelectorAll("a,button,[data-hover]").forEach(el => {
-      el.addEventListener("mouseenter", grow);
-      el.addEventListener("mouseleave", shrink);
-    });
+    document.addEventListener("mouseover", onOver);
+    document.addEventListener("mouseout", onOut);
 
     return () => {
       cancelAnimationFrame(af);
       window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseover", onOver);
+      document.removeEventListener("mouseout", onOut);
     };
   }, []);
 

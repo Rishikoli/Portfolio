@@ -2,41 +2,30 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { GITHUB_PROFILE, PROJECTS, type Project } from "@/lib/content";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PROJECTS = [
-  {
-    id: "nexus",
-    title: "NEXUS Ray",
-    subtitle: "AI Agent Orchestration Framework",
-    desc: "An event-driven AI orchestration framework for distributed intelligent workflows. Built scalable Python microservices for AI inference and workflow automation. Optimized AI inference latency using OpenVINO INT8 quantization, reducing model execution time for production deployments. Integrated OpenAI APIs with custom prompt engineering for intelligent automation.",
-    tech: ["Python", "Apache Kafka", "OpenVINO", "OpenAI APIs", "ChromaDB"],
-    metrics: ["60% Latency Reduction", "Event-Driven Inference"],
-    color: "#76ABAE",
-    link: "https://github.com/Rishikoli/Portfolio"
-  },
-  {
-    id: "interview",
-    title: "InterviewMaster",
-    subtitle: "AI Interview Coaching Platform",
-    desc: "An AI-powered coaching platform with real-time feedback loops and dynamic LLM-driven question generation. Implemented prompt engineering pipelines to simulate diverse interview scenarios. Built low-latency backend APIs using FastAPI supporting concurrent AI sessions, validating model outputs for accuracy.",
-    tech: ["FastAPI", "React", "OpenAI GPT-4", "WebSockets", "Redis"],
-    metrics: ["Low-Latency Sessions", "Dynamic LLM Prompting"],
-    color: "#FF5722",
-    link: "https://github.com/Rishikoli/Portfolio"
-  },
-  {
-    id: "dementia",
-    title: "AI Dementia Assistant",
-    subtitle: "Cognitive Support LLM App",
-    desc: "A human-centered AI assistant for dementia patients leveraging conversational LLM workflows for cognitive support and caregiver interaction. Engineered scalable REST APIs enabling real-time AI responses. Applied responsible AI design principles to ensure safe, personalized, and context-aware interactions.",
-    tech: ["FastAPI", "Next.js", "OpenAI Speech", "MongoDB Vector"],
-    metrics: ["Context-Aware Memory", "Responsible AI Guardrails"],
-    color: "#303841",
-    link: "https://github.com/Rishikoli/Portfolio"
+function ProjectVisual({ project: p }: { project: Project }) {
+  if (p.image) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={p.image} alt={`${p.title} screenshot`} style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: 16, marginBottom: 28 }} />
+    );
   }
-];
+  return (
+    <div aria-label={`${p.title} architecture`} style={{ background: `${p.color}0D`, border: `1px solid ${p.color}26`, borderRadius: 16, padding: "20px 16px", marginBottom: 28, display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6 }}>
+      {p.flow.map((step, i) => (
+        <span key={step} style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <span style={{ padding: "6px 10px", borderRadius: 8, background: "#fff", border: "1px solid rgba(48,56,65,0.08)", fontSize: 12, fontWeight: 600, color: "#303841", whiteSpace: "nowrap" }}>
+            {step}
+          </span>
+          {i < p.flow.length - 1 && <span aria-hidden style={{ color: p.color, fontSize: 14 }}>→</span>}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export default function WorkSection() {
   const secRef = useRef<HTMLElement>(null);
@@ -49,7 +38,7 @@ export default function WorkSection() {
         { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".work-header", start: "top 80%" } }
       );
 
-      gsap.utils.toArray<HTMLElement>(".project-card").forEach((card, i) => {
+      gsap.utils.toArray<HTMLElement>(".project-card").forEach((card) => {
         gsap.fromTo(card,
           { y: 60, opacity: 0 },
           { 
@@ -74,7 +63,7 @@ export default function WorkSection() {
       <div className="work-header" style={{ marginBottom: 80, opacity: 0, textAlign: "center" }}>
         <h2 className="font-serif" style={{ fontSize: "clamp(40px, 6vw, 80px)", color: "#303841", lineHeight: 1.1 }}>
           Selected<br/>
-          <span style={{ color: "#76ABAE", fontStyle: "italic" }}>AI Projects</span>
+          <span className="scribble" style={{ color: "#76ABAE", fontStyle: "italic" }}>AI Projects</span>
         </h2>
         <p style={{ fontSize: 18, color: "rgba(48,56,65,0.6)", marginTop: 24, maxWidth: 600, margin: "24px auto 0" }}>
           Production-grade systems showcasing LLM integration, real-time inference, and scalable microservice architectures.
@@ -89,7 +78,10 @@ export default function WorkSection() {
               <div style={{ padding: "6px 16px", borderRadius: 999, background: `${p.color}15`, color: p.color, fontSize: 12, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase" }}>
                 {p.subtitle}
               </div>
+              <span style={{ fontSize: 13, color: "rgba(48,56,65,0.4)", fontWeight: 500 }}>{p.year}</span>
             </div>
+
+            <ProjectVisual project={p} />
 
             <h3 className="font-serif" style={{ fontSize: 32, fontWeight: 600, color: "#303841", marginBottom: 16 }}>
               {p.title}
@@ -122,9 +114,16 @@ export default function WorkSection() {
               </div>
             </div>
 
-            <a href={p.link} target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ padding: "12px 0", fontSize: 14, width: "100%", justifyContent: "center", marginTop: "auto" }}>
-              View Source Code
-            </a>
+            <div style={{ display: "flex", gap: 12, marginTop: "auto" }}>
+              <a href={p.repo || GITHUB_PROFILE} target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ padding: "12px 0", fontSize: 14, flex: 1, justifyContent: "center" }}>
+                {p.repo ? "View Source Code" : "More on GitHub"}
+              </a>
+              {p.demo && (
+                <a href={p.demo} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: "12px 0", fontSize: 14, flex: 1, justifyContent: "center" }}>
+                  Live Demo
+                </a>
+              )}
+            </div>
           </div>
         ))}
       </div>

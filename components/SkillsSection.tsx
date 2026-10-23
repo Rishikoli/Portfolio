@@ -59,7 +59,7 @@ export default function SkillsSection() {
       <div className="skills-title" style={{ marginBottom: 80, opacity: 0, textAlign: "center" }}>
         <h2 className="font-serif" style={{ fontSize: "clamp(40px, 6vw, 80px)", color: "#303841", lineHeight: 1.1 }}>
           Technical<br/>
-          <span style={{ color: "#FF5722", fontStyle: "italic" }}>Expertise</span>
+          <span className="scribble" style={{ color: "#FF5722", fontStyle: "italic" }}>Expertise</span>
         </h2>
         <p style={{ fontSize: 18, color: "rgba(48,56,65,0.6)", marginTop: 24, maxWidth: 600, margin: "24px auto 0" }}>
           A comprehensive breakdown of my engineering capabilities and mathematical foundation.
@@ -74,7 +74,7 @@ export default function SkillsSection() {
             </h3>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "auto" }}>
               {cat.skills.map(s => (
-                <span key={s} style={{ padding: "6px 14px", borderRadius: 999, background: "#F5F5F5", fontSize: 13, color: "#303841", fontWeight: 500, border: "1px solid rgba(48,56,65,0.04)" }}>
+                <span key={s} style={{ padding: "6px 14px", borderRadius: 999, background: "var(--paper-deep)", fontSize: 13, color: "#303841", fontWeight: 500, border: "1px solid rgba(48,56,65,0.04)" }}>
                   {s}
                 </span>
               ))}

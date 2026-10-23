@@ -40,8 +40,8 @@ export default function ContactSection() {
         
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <h2 className="font-serif contact-up" style={{ fontSize: "clamp(40px, 6vw, 72px)", color: "#303841", lineHeight: 1.1, marginBottom: 24, opacity: 0 }}>
-            Let's build<br/>
-            <span style={{ color: "#FF5722", fontStyle: "italic" }}>something great.</span>
+            Let&apos;s build<br/>
+            <span className="scribble" style={{ color: "#FF5722", fontStyle: "italic" }}>something great.</span>
           </h2>
           <p className="contact-up" style={{ fontSize: 16, color: "rgba(48,56,65,0.6)", maxWidth: 500, margin: "0 auto", opacity: 0 }}>
             I am currently open to ML Engineer Internship opportunities. Drop a message or email me directly.
@@ -52,7 +52,7 @@ export default function ContactSection() {
           <div style={{ textAlign: "center", padding: "40px 0" }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>🚀</div>
             <h3 style={{ fontSize: 24, fontWeight: 600, color: "#303841", marginBottom: 8 }}>Message Sent</h3>
-            <p style={{ color: "rgba(48,56,65,0.5)" }}>I'll get back to you as soon as possible.</p>
+            <p style={{ color: "rgba(48,56,65,0.5)" }}>I&apos;ll get back to you as soon as possible.</p>
           </div>
         ) : (
           <form onSubmit={submit} className="contact-up" style={{ opacity: 0, display: "flex", flexDirection: "column", gap: 32, maxWidth: 600, margin: "0 auto" }}>
@@ -92,9 +92,9 @@ export default function ContactSection() {
           </button>
         </div>
 
-        <div style={{ fontSize: 13, color: "rgba(48,56,65,0.4)" }}>
-          © 2025 Rishikesh Koli
-        </div>
+        <a href="/Rishikesh_Koli_ML_Intern_Resume.pdf" target="_blank" rel="noopener noreferrer" style={{ fontSize: 14, fontWeight: 500, color: "#FF5722", textDecoration: "none" }}>
+          Download Resume ↓
+        </a>
       </div>
 
     </section>

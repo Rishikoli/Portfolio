@@ -2,6 +2,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import MarqueeBanner from "@/components/MarqueeBanner";
+import DigitalBook from "@/components/DigitalBook";
 import WorkSection from "@/components/WorkSection";
 import SkillsSection from "@/components/SkillsSection";
 import AboutSection from "@/components/AboutSection";
@@ -16,6 +17,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <MarqueeBanner />
+        <DigitalBook />
         <WorkSection />
         <SkillsSection />
         <AboutSection />
